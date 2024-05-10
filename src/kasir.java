@@ -30,7 +30,6 @@ public class kasir {
                 barang = input.nextInt();
                 harga = 43_000;
                 break;
-            // tambahkan case untuk barang-barang lainnya
         }
 
         bufferedWriter.write("Jumlah Barang : " + barang);
