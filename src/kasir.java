@@ -17,7 +17,7 @@ public class kasir {
         System.out.print("Pilih:");
         var kasir = input.next();
         int harga = 0;
-        int barang = 0;
+        int totalBarang = 0;
 
         FileWriter fileWriter = new FileWriter("cetakStruk.txt", true);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
@@ -27,21 +27,21 @@ public class kasir {
                 bufferedWriter.write(" Minyak Goreng (Harga Rp. 43.000,-)");
                 bufferedWriter.newLine();
                 System.out.print("Masukkan Nominal : ");
-                barang = input.nextInt();
+                totalBarang = input.nextInt();
                 harga = 43_000;
                 break;
         }
 
-        bufferedWriter.write("Jumlah Barang : " + barang);
+        bufferedWriter.write("Jumlah Barang : " + totalBarang);
         bufferedWriter.newLine();
-        bufferedWriter.write("Total : " + harga * barang );
+        bufferedWriter.write("Total : " + harga * totalBarang);
         bufferedWriter.newLine();
 
         System.out.println("Mana duit Lo");
         int uang = input.nextInt();
 
-        if (uang >= harga * barang) {
-            int kembali = uang - (harga * barang);
+        if (uang >= harga * totalBarang) {
+            int kembali = uang - (harga * totalBarang);
             bufferedWriter.write("Uang Kembali : " + kembali);
             bufferedWriter.newLine();
         } else {
