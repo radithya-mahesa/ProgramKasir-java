@@ -42,7 +42,7 @@ public class kasir {
                 bufferedWriter.newLine();
                 System.out.print("Masukkan Nominal : ");
                 totalBarang = input.nextInt();
-                harga = 80_000;
+                harga = 500_000;
                 break;
         }
 
