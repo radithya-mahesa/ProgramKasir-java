@@ -37,6 +37,13 @@ public class kasir {
                 totalBarang = input.nextInt();
                 harga = 60_000;
                 break;
+            case "3" :
+                bufferedWriter.write("3. Voucher Google Play (Harga Rp. 500.000,-)");
+                bufferedWriter.newLine();
+                System.out.print("Masukkan Nominal : ");
+                totalBarang = input.nextInt();
+                harga = 500_000;
+                break;
         }
 
         bufferedWriter.write("Jumlah Barang : " + totalBarang);
