@@ -30,6 +30,13 @@ public class kasir {
                 totalBarang = input.nextInt();
                 harga = 43_000;
                 break;
+            case "2" :
+                bufferedWriter.write("2. Hotwheels Audi Rs6 (Harga Rp. 60.000,-)");
+                bufferedWriter.newLine();
+                System.out.print("Masukkan Nominal : ");
+                totalBarang = input.nextInt();
+                harga = 60_000;
+                break;
         }
 
         bufferedWriter.write("Jumlah Barang : " + totalBarang);
@@ -37,7 +44,7 @@ public class kasir {
         bufferedWriter.write("Total : " + harga * totalBarang);
         bufferedWriter.newLine();
 
-        System.out.println("Mana duit Lo");
+        System.out.println("Berikan Uang : ");
         int uang = input.nextInt();
 
         if (uang >= harga * totalBarang) {
@@ -45,7 +52,7 @@ public class kasir {
             bufferedWriter.write("Uang Kembali : " + kembali);
             bufferedWriter.newLine();
         } else {
-            System.out.println("Pulang lo");
+            System.out.println("Uang Anda tidak cukup, silahkan pulang");
         }
         bufferedWriter.close();
     }
