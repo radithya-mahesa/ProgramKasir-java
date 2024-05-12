@@ -5,3 +5,7 @@ Minyak Goreng (Harga Rp. 43.000,-)
 Jumlah Barang : 6
 Total : 258000
 
+ Minyak Goreng (Harga Rp. 43.000,-)
+Jumlah Barang : 2
+Total : 86000
+Uang Kembali : 114000
