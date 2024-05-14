@@ -1,1 +1,1 @@
-<h1>Belum Selesai</h1>
+<h3>Program Kasir Sederhana</h1>
