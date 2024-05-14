@@ -62,5 +62,6 @@ public class kasir {
             System.out.println("Uang Anda tidak cukup, silahkan pulang");
         }
         bufferedWriter.close();
+        System.out.println();
     }
 }
