@@ -1,7 +1,20 @@
-Minyak Goreng (Harga Rp. 43.000,-)
-Nominal : 3
-Total : 129000
-Minyak Goreng (Harga Rp. 43.000,-)
-Jumlah Barang : 6
-Total : 258000
+=== Struk Pembelian ===
+Barang yang dibeli:
+- Voucher Google Play
+Total Biaya: Rp. 500000
+Jumlah Uang: Rp. 1000000
+Kembalian: Rp. 500000
 
+=== Struk Pembelian ===
+Barang yang dibeli:
+- Sponge Popcorn
+Total Biaya: Rp. 22000
+Jumlah Uang: Rp. 50000
+Kembalian: Rp. 28000
+
+=== Struk Pembelian ===
+Barang yang dibeli:
+- Seblak Cingur
+Total Biaya: Rp. 7000
+Jumlah Uang: Rp. 10000
+Kembalian: Rp. 3000
