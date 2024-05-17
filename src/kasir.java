@@ -1,16 +1,17 @@
+package ProjectBesar;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
 public class kasir {
-    private static final String STRUK_FILE = "CetakStruk.txt";/*
+    private static final String STRUK_FILE = "buatStruk.txt";/*
     Code Yang Ada Kata Kunci Final nya Benilai Konstanta (Tidak Bisa diubah),
     Di Code INI Bernama Struk_fie Yang Menyimpan nilai CetakStruk,
     yang dimana Struck akan di cetak, dengan kode ini juga dapat membantu dalam menghindari kesalahan penulisan nama file
     dan memudahkan pengelolaan perubahan nama file jika diperlukan.
     */
-    private static final Map<String, Barang> stock = new HashMap<>();/*
+    private static final Map<String, Barang> barangg = new HashMap<>();/*
     Code ini merepresentasikan sebuah kumpulan pasangan key-value (pasangan kunci dan nilai). Di dalam Map,
     yang dimana KEY nya itu "String" Dan VALUE Nya Itu "int", Contohnya "Minyak Goreng" itu KEY dan "Rp.43000" Itu VALUE
     Fungsinya Yakni Untuk Mempermudah Menambah,MengUpdate,Menyimpan,Menghapus Data.
@@ -20,8 +21,7 @@ public class kasir {
 
         InisialisasiStokBarang();// Memberi nilai awal Stock barang
 
-        System.out.println("Selamat datang di Program Kasir\n");
-
+        System.out.println("\nSelamat datang di Program Kasir");
         while (true) {
             System.out.println("Silakan login sebagai:");
             System.out.println("1. Kasir");
@@ -55,9 +55,13 @@ public class kasir {
         int totalBiaya = 0;
         List<String> barangYangDibeli = new ArrayList<>();
 
+        String [] barang = {"Minyak goreng","minyak jelantah","gula Putih"};
+
+        //minyak goreng,minyak jelantah,gula putih
+
         while (true) {
             tampilkanBarang();
-            System.out.print("Pilih barang dengan No.Urut atau '0' untuk selesai: ");
+            System.out.print("Pilih barang dari nomor urut Berikut atau '0' untuk selesai(Memilih Barang): ");
             String pilihan = scanner.nextLine();
 
             if (pilihan.equals("0")) {
@@ -69,24 +73,25 @@ public class kasir {
                 continue;
             }
 
-            String namaBarang = stock.get(pilihan).getNama();
-            int hargaBarang = stock.get(pilihan).getHarga();
+            String namaBarang = barangg.get(pilihan).getNama();
+            int hargaBarang = barangg.get(pilihan).getHarga();
 
             System.out.print("Masukkan jumlah barang yang ingin dibeli: ");
             int jumlahBarang = scanner.nextInt();
             scanner.nextLine();
 
             if (!apakahStockTersedia(pilihan, jumlahBarang)) {
-                System.out.println("Maaf, stok tidak mencukupi untuk jumlah yang diminta.");
-                continue;
+                System.out.println("Maaf, stok tidak mencukupi untuk jumlah yang diminta,Silahkan Memilih Barang yang lain.");
+                continue; //melanjutkan ke tampilkanBarang Lagi
             }
 
             int totalBiayaPerBarang = hargaBarang * jumlahBarang;
             totalBiaya += totalBiayaPerBarang;
 
+
             // Mengurangi Stok saat transaksi berhasil
             MengurangiStok(pilihan, jumlahBarang);
-            barangYangDibeli.add(namaBarang);
+            barangYangDibeli.add(namaBarang);// inikan kalau beli barang jadi nambah barang
 
             System.out.println("Barang berhasil ditambahkan ke keranjang.");
         }
@@ -98,7 +103,7 @@ public class kasir {
         scanner.nextLine(); //
 
         if (jumlahUangYangHarusDibayar < totalBiaya) {
-            System.out.println("Maaf, uang Anda tidak mencukupi untuk pembelian ini.");
+            System.out.println("Maaf, uang Anda tidak mencukupi untuk pembelian ini, Anda akan diarahkan ke Tampilan Awal,Lain kali bawa uang Yang cukup.");
         } else {
             int kembalian = jumlahUangYangHarusDibayar - totalBiaya;
             System.out.println("Uang kembali: Rp. " + kembalian);
@@ -123,10 +128,10 @@ public class kasir {
             System.out.println("5. Kembali ke Menu Utama");
 
             System.out.print("Pilihan: ");
-            int pilihan = scanner.nextInt();
+            int pilihanAdminKasir = scanner.nextInt();
             scanner.nextLine();
 
-            switch (pilihan) {
+            switch (pilihanAdminKasir) {
                 case 1:
                     TambahkanBarangBaru(scanner);
                     break;
@@ -134,7 +139,7 @@ public class kasir {
                     tampilkanStock();
                     break;
                 case 3:
-                    removeItem(scanner);
+                    hapusBarang(scanner);
                     break;
                 case 4:
                     perbaruiStok(scanner);
@@ -161,22 +166,22 @@ public class kasir {
         scanner.nextLine();
 
         Barang barangBaru = new Barang(namaBarangBaru, hargaBarangBaru, stockBarangBaru);
-        String nomorUrutBarangBaru = Integer.toString(stock.size() + 1);
-        stock.put(nomorUrutBarangBaru, barangBaru);
+        String nomorUrutBarangBaru = Integer.toString(barangg.size() + 1);//fungsinya buat otomatis nambah contoh 1 jadi 2,2 jadi 3
+        barangg.put(nomorUrutBarangBaru, barangBaru);
 
-        System.out.println("Barang baru \"" + namaBarangBaru + "\" dengan stok " + stockBarangBaru + " berhasil ditambahkan ke dalam stok.");
+        System.out.println("Barang baru \"" + namaBarangBaru + "\" dengan stok " + stockBarangBaru + " berhasil ditambahkan ke dalam list barang dan stok.");
     }
 
-    private static void removeItem(Scanner scanner) {
+    private static void hapusBarang(Scanner scanner) {
         tampilkanStock();
 
         System.out.print("Masukkan nomor barang yang ingin dihapus: ");
         String pilihan = scanner.nextLine();
 
         if (ApakahBarangValid(pilihan)) {
-            Barang barang = stock.get(pilihan);
-            stock.remove(pilihan);
-            System.out.println(barang.getNama() + " berhasil dihapus dari stok.");
+            Barang barang = barangg.get(pilihan);
+            barangg.remove(pilihan);
+            System.out.println(barang.getNama() + " berhasil dihapus dari list barang stok.");
         } else {
             System.out.println("Barang tidak valid.");
         }
@@ -186,10 +191,10 @@ public class kasir {
         tampilkanStock();
 
         System.out.print("Masukkan nomor barang yang ingin diupdate stoknya: ");
-        String pilihan = scanner.nextLine();
+        String pilihanUpdateBarang = scanner.nextLine();
 
-        if (ApakahBarangValid(pilihan)) {
-            Barang barang = stock.get(pilihan);
+        if (ApakahBarangValid(pilihanUpdateBarang)) {
+            Barang barang = barangg.get(pilihanUpdateBarang);
             System.out.print("Masukkan jumlah stok baru: ");
             int newStock = scanner.nextInt();
             scanner.nextLine();
@@ -202,16 +207,16 @@ public class kasir {
     }
 
     private static void InisialisasiStokBarang() {
-        stock.put("1", new Barang("Minyak Goreng", 43000, 10));
-        stock.put("2", new Barang("Hotwheels Audi Rs6", 60000, 5));
-        stock.put("3", new Barang("Voucher Google Play", 500000, 3));
-        stock.put("4", new Barang("Kinderjoy", 16000, 20));
-        stock.put("5", new Barang("Sponge Popcorn", 22000, 15));
+        barangg.put("1", new Barang("Minyak Goreng", 43000, 10));
+        barangg.put("2", new Barang("Hotwheels Audi Rs6", 60000, 5));
+        barangg.put("3", new Barang("Voucher Google Play", 500000, 3));
+        barangg.put("4", new Barang("Kinderjoy", 16000, 20));
+        barangg.put("5", new Barang("Sponge Popcorn", 22000, 15));
     }
 
     private static void tampilkanBarang() {
         System.out.println("\nDaftar Barang:");
-        for (Map.Entry<String, Barang> entry : stock.entrySet()) {
+        for (Map.Entry<String, Barang> entry : barangg.entrySet()) {
             String nomorUrut = entry.getKey();
             Barang barang = entry.getValue();
             System.out.println(nomorUrut + ". " + barang.getNama() + " (Rp. " + barang.getHarga() + ") - Stok: " + barang.getStok());
@@ -220,27 +225,28 @@ public class kasir {
 
     private static void tampilkanStock() {
         System.out.println("\nStok Barang:");
-        for (Map.Entry<String, Barang> entry : stock.entrySet()) {
-            Barang barang = entry.getValue();
-            System.out.println(barang.getNama() + " - Stok: " + barang.getStok());
+        for (Map.Entry<String, Barang> entry : barangg.entrySet()) {
+            String nomorUrut = entry.getKey(); // nomor urut dijadikan kunci
+            Barang barang = entry.getValue(); // barang dijadikan nilai
+            System.out.println(nomorUrut +". " + barang.getNama() + " - Stok: " + barang.getStok());
         }
     }
 
     private static boolean ApakahBarangValid(String pilihan) {
-        return stock.containsKey(pilihan);
+        return barangg.containsKey(pilihan);
     }
 
     private static boolean apakahStockTersedia(String pilihan, int jumlahBarang) {
-        if (stock.containsKey(pilihan)) {
-            Barang barang = stock.get(pilihan);
+        if (barangg.containsKey(pilihan)) {
+            Barang barang = barangg.get(pilihan);
             return barang.getStok() >= jumlahBarang;
         }
         return false;
     }
 
     private static void MengurangiStok(String pilihan, int jumlahBarang) {
-        if (stock.containsKey(pilihan)) {
-            Barang barang = stock.get(pilihan);
+        if (barangg.containsKey(pilihan)) {
+            Barang barang = barangg.get(pilihan);
             int stokSaatIni = barang.getStok();
             barang.setStok(stokSaatIni - jumlahBarang);
         }
