@@ -1,11 +1,10 @@
-package ProjectBesar;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
 public class kasir {
-    private static final String STRUK_FILE = "buatStruk.txt";/*
+    private static final String STRUK_FILE = "cetakStruk.txt";/*
     Code Yang Ada Kata Kunci Final nya Benilai Konstanta (Tidak Bisa diubah),
     Di Code INI Bernama Struk_fie Yang Menyimpan nilai CetakStruk,
     yang dimana Struck akan di cetak, dengan kode ini juga dapat membantu dalam menghindari kesalahan penulisan nama file
@@ -23,7 +22,7 @@ public class kasir {
 
         System.out.println("\nSelamat datang di Program Kasir");
         while (true) {
-            System.out.println("Silakan login sebagai:");
+            System.out.println("\nSilakan login sebagai:");
             System.out.println("1. Kasir");
             System.out.println("2. Admin Kasir");
             System.out.println("3. Keluar");
@@ -55,17 +54,18 @@ public class kasir {
         int totalBiaya = 0;
         List<String> barangYangDibeli = new ArrayList<>();
 
-        String [] barang = {"Minyak goreng","minyak jelantah","gula Putih"};
-
-        //minyak goreng,minyak jelantah,gula putih
-
         while (true) {
             tampilkanBarang();
-            System.out.print("Pilih barang dari nomor urut Berikut atau '0' untuk selesai(Memilih Barang): ");
+            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++");
+            System.out.print("> Pilih barang dari nomor urut Berikut atau '0' untuk selesai \natau ketik Kembali untuk kembali ke halaman utama: ");
             String pilihan = scanner.nextLine();
 
             if (pilihan.equals("0")) {
                 break;
+            }
+
+            if(pilihan.equals("Kembali")){
+                return;
             }
 
             if (!ApakahBarangValid(pilihan)) {
@@ -76,7 +76,7 @@ public class kasir {
             String namaBarang = barangg.get(pilihan).getNama();
             int hargaBarang = barangg.get(pilihan).getHarga();
 
-            System.out.print("Masukkan jumlah barang yang ingin dibeli: ");
+            System.out.print("> Masukkan jumlah barang yang ingin dibeli: ");
             int jumlahBarang = scanner.nextInt();
             scanner.nextLine();
 
@@ -93,24 +93,24 @@ public class kasir {
             MengurangiStok(pilihan, jumlahBarang);
             barangYangDibeli.add(namaBarang);// inikan kalau beli barang jadi nambah barang
 
-            System.out.println("Barang berhasil ditambahkan ke keranjang.");
+            System.out.println("````Barang berhasil ditambahkan ke keranjang````");
         }
 
         System.out.println("\nTotal biaya semua barang: Rp. " + totalBiaya);
 
-        System.out.print("Masukkan jumlah uang: Rp. ");
+        System.out.print("> Masukkan jumlah uang: Rp. ");
         int jumlahUangYangHarusDibayar = scanner.nextInt();
         scanner.nextLine(); //
-
         if (jumlahUangYangHarusDibayar < totalBiaya) {
-            System.out.println("Maaf, uang Anda tidak mencukupi untuk pembelian ini, Anda akan diarahkan ke Tampilan Awal,Lain kali bawa uang Yang cukup.");
+            System.out.println("Maaf, uang Anda tidak mencukupi untuk pembelian ini, Anda akan diarahkan ke Tampilan Awal.");
+
         } else {
             int kembalian = jumlahUangYangHarusDibayar - totalBiaya;
             System.out.println("Uang kembali: Rp. " + kembalian);
 
             try {
                 mencetakStruk(barangYangDibeli, totalBiaya, jumlahUangYangHarusDibayar, kembalian);
-                System.out.println("Terima kasih telah berbelanja!");
+                System.out.println("Terima kasih telah berbelanja!\n");
             } catch (IOException e) {
                 System.out.println("Terjadi kesalahan saat mencetak struk.");
                 e.printStackTrace();
@@ -154,14 +154,14 @@ public class kasir {
     }
 
     private static void TambahkanBarangBaru(Scanner scanner) {
-        System.out.print("Masukkan nama barang baru: ");
+        System.out.print("> Masukkan nama barang baru: ");
         String namaBarangBaru = scanner.nextLine();
 
-        System.out.print("Masukkan harga barang: Rp. ");
+        System.out.print("> Masukkan harga barang: Rp. ");
         int hargaBarangBaru = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.print("Masukkan stok barang: ");
+        System.out.print("> Masukkan stok barang: ");
         int stockBarangBaru = scanner.nextInt();
         scanner.nextLine();
 
@@ -175,7 +175,7 @@ public class kasir {
     private static void hapusBarang(Scanner scanner) {
         tampilkanStock();
 
-        System.out.print("Masukkan nomor barang yang ingin dihapus: ");
+        System.out.print("> Masukkan nomor barang yang ingin dihapus: ");
         String pilihan = scanner.nextLine();
 
         if (ApakahBarangValid(pilihan)) {
@@ -190,12 +190,12 @@ public class kasir {
     private static void perbaruiStok(Scanner scanner) {
         tampilkanStock();
 
-        System.out.print("Masukkan nomor barang yang ingin diupdate stoknya: ");
+        System.out.print("> Masukkan nomor barang yang ingin diupdate stoknya: ");
         String pilihanUpdateBarang = scanner.nextLine();
 
         if (ApakahBarangValid(pilihanUpdateBarang)) {
             Barang barang = barangg.get(pilihanUpdateBarang);
-            System.out.print("Masukkan jumlah stok baru: ");
+            System.out.print("> Masukkan jumlah stok baru: ");
             int newStock = scanner.nextInt();
             scanner.nextLine();
 
@@ -215,7 +215,7 @@ public class kasir {
     }
 
     private static void tampilkanBarang() {
-        System.out.println("\nDaftar Barang:");
+        System.out.println("\n++++++++++++++++ Daftar Barang ++++++++++++++++");
         for (Map.Entry<String, Barang> entry : barangg.entrySet()) {
             String nomorUrut = entry.getKey();
             Barang barang = entry.getValue();
