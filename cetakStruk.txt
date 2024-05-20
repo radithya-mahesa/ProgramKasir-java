@@ -18,3 +18,60 @@ Barang yang dibeli:
 Total Biaya: Rp. 7000
 Jumlah Uang: Rp. 10000
 Kembalian: Rp. 3000
+
+=== Struk Pembelian ===
+Barang yang dibeli:
+- Minyak Goreng
+Total Biaya: Rp. 215000
+Jumlah Uang: Rp. 300000
+Kembalian: Rp. 85000
+
+=== Struk Pembelian ===
+Barang yang dibeli:
+- Minyak Goreng
+Total Biaya: Rp. 43000
+Jumlah Uang: Rp. 50000
+Kembalian: Rp. 7000
+
+=== Struk Pembelian ===
+Barang yang dibeli:
+- Voucher Google Play
+Total Biaya: Rp. 500000
+Jumlah Uang: Rp. 1000000
+Kembalian: Rp. 500000
+
+=== Struk Pembelian ===
+Barang yang dibeli:
+- Sponge Popcorn
+Total Biaya: Rp. 66000
+Jumlah Uang: Rp. 66000
+Kembalian: Rp. 0
+
+=== Struk Pembelian ===
+Barang yang dibeli:
+- Minyak Goreng
+Total Biaya: Rp. 43000
+Jumlah Uang: Rp. 100000
+Kembalian: Rp. 57000
+
+=== Struk Pembelian ===
+Barang yang dibeli:
+- Minyak Goreng
+Total Biaya: Rp. 43000
+Jumlah Uang: Rp. 100000
+Kembalian: Rp. 57000
+
+=== Struk Pembelian ===
+Barang yang dibeli:
+- Minyak Goreng
+Total Biaya: Rp. 86000
+Jumlah Uang: Rp. 100000
+Kembalian: Rp. 14000
+
+=== Struk Pembelian ===
+Barang yang dibeli:
+- Minyak Goreng
+- Hotwheels Audi Rs6
+Total Biaya: Rp. 206000
+Jumlah Uang: Rp. 210000
+Kembalian: Rp. 4000
