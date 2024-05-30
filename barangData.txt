@@ -1,0 +1,8 @@
+1,Minyak Goreng,43000,12
+2,Hotwheels Audi Rs6,60000,5
+3,Voucher Google Play,500000,3
+4,Kinderjoy,16000,20
+5,Sponge Popcorn,22000,15
+6,Gula Merah,25000,20
+8,Gula Pasir,25000,20
+9,Ice Cream Aice Corn,3000,25
