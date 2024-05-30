@@ -1,1 +1,5 @@
-<h3>Program Kasir Sederhana</h1>
+# Program Kasir Sederhana
+
+- Run program di KasirApp.java
+
+- IDE yang dipakai adalah Intellij IDEA
